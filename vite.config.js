@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 export default defineConfig({
+  base: "/vite-template-14-06/",
   plugins: [
     ViteImageOptimizer({
       png: {
@@ -34,9 +35,12 @@ export default defineConfig({
         glob
           .sync(["./*.html", "./pages/**/*.html"])
           .map((file) => [
-            path.relative(__dirname, file.slice(0, file.length - path.extname(file).length)),
+            path.relative(
+              __dirname,
+              file.slice(0, file.length - path.extname(file).length),
+            ),
             fileURLToPath(new URL(file, import.meta.url)),
-          ])
+          ]),
       ),
       // output unminified CSS file
       output: {
